@@ -48,12 +48,13 @@ function calcCart() {
    var cart = document.forms.cart;
    //vars for field data
    var mCost = cart.elements.modelCost.value;
-   var mQty = cart.elements.modelQty.value;
+   var qIndex = cart.elements.modelQty.selectedIndex;
+   var quantity = cart.elements.modelQty[qIndex].value;
 
-   var orderCost = mCost*mQty;
+   var orderCost = mCost*quantity;
    cart.elements.orderCost.value = formatUSCurrency(orderCost);
 
-   var shipCost = document.querySelector('input[name="shipping"]:checked').value*mQty;
+   var shipCost = document.querySelector('input[name="shipping"]:checked').value*quantity;
    cart.elements.shippingCost.value = formatNumber(shipCost, 2);
 
    cart.elements.subTotal.value = formatNumber(orderCost + shipCost, 2);
